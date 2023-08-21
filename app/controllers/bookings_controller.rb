@@ -11,9 +11,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @user = current_user
-    @booking.id_users = @user.id
+    @booking.user_id = @user.id
     @offer = Offer.find(params[:offer_id])
-    @booking.id_offers = @offer.id # récupérer sur la show de offer l'ID de l'offre
+    @booking.offer_id = @offer.id # récupérer sur la show de offer l'ID de l'offre
     if @booking.save
       redirect_to @booking
     else
