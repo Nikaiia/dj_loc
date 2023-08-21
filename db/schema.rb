@@ -29,10 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_101123) do
   create_table "offers", force: :cascade do |t|
     t.date "availability"
     t.integer "pricing"
-    t.string "social_media"
     t.string "style"
-    t.integer "age"
-    t.integer "phone_number"
     t.text "content"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -57,6 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_101123) do
     t.integer "age"
     t.string "phone_number"
     t.string "role"
+    t.string "username"
+    t.string "social_media"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
