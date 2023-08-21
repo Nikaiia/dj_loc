@@ -11,8 +11,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new
-    @booking = Booking.find(params[:booking_id])
+    @review = Review.new(params[:rating :content :id_user :booking_id])
   end
 
   def create
