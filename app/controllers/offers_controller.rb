@@ -11,7 +11,7 @@ before_action :set_offer, only: [:show, :edit, :update, :create, :destroy]
   def create
     @offer = Offer.new(offer_params)
     @user = current_user
-    @offer.id_users = @user
+    @offer.user_id = @user
     if @offer.save
       redirect_to @offer
     else
