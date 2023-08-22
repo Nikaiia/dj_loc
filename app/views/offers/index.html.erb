@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Dj Lock - Offers</title>
@@ -28,13 +29,7 @@
       width: 100px;
     }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-links li {
+    .navbar-links li {
       font-size: 16px;
     }
 
@@ -45,61 +40,73 @@
       padding: 40px;
     }
 
-    .offers-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
     .offer-list {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
 
-    .offer-item {
+    .offer-card {
       background-color: white;
       padding: 20px;
-      border-radius: 6px;
+      border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .offer-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px; /* Ajustez la hauteur selon vos besoins */
+      overflow: hidden; /* Pour que l'image ne dépasse pas de la carte */
+      margin-bottom: 10px;
     }
 
     .offer-image {
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
+      border-radius: 10px;
+    }
+
+    .offer-details {
+      margin-top: 20px;
     }
 
     .offer-name {
       font-size: 18px;
-      margin-top: 10px;
+      margin-bottom: 5px;
     }
 
     .offer-price {
       font-size: 16px;
-      color: #ff5a5f;
-      margin-top: 5px;
+      color: green;
+      margin-bottom: 5px;
     }
 
     .offer-description {
-      margin-top: 10px;
+      font-size: 14px;
       color: #666;
     }
 
     .view-offer-button {
       display: block;
-      background-color: #ff5a5f;
+      background-color: #27F4C3;
       color: white;
       padding: 8px 12px;
       border: none;
       border-radius: 4px;
       text-align: center;
-      margin-top: 10px;
       text-decoration: none;
     }
 
     .view-offer-button:hover {
       background-color: #e54043;
     }
-/* footer style */
+
+    /* Footer styles */
     .footer {
       background-color: #f5f5f5;
       padding: 20px;
@@ -123,7 +130,7 @@
       <% end %>
     </div>
     <ul class="navbar-links">
-       <%= link_to 'Sign out', class: 'btn-primary' %>
+      <%= link_to 'Sign out', class: 'btn-primary' %>
       <%# TODO: LINK TO SIGNOUT HOME %>
     </ul>
   </header>
@@ -132,13 +139,17 @@
     <h1 class="offers-title">Available Offers</h1>
 
     <div class="offer-list">
-      <%= @offers.each do |offer| %>
+      <% @offers.each do |offer| %>
         <div class="offer-card">
-          <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+          <div class="offer-image-container">
+            <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+          </div>
           <div class="offer-details">
             <h2 class="offer-name"><%= offer.availability %></h2>
-            <p class="offer-price"><%= offer.pricing %></p>
+            <p class="offer-price"><%= offer.pricing %> €</p>
             <p class="offer-description"><%= offer.content %></p>
+          </div>
+          <div class="view-offer-button-container">
             <%= link_to "View Offer", offer_path(offer), class: "view-offer-button" %>
           </div>
         </div>

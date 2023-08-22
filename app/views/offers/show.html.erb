@@ -1,2 +1,152 @@
-<h1>Offers#show</h1>
-<p>Find me in app/views/offers/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dj Lock - Offer Details</title>
+  <style>
+    /* Réinitialiser certains styles par défaut */
+    body, h1, h2, h3, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Styles globaux */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    /* Styles de la navbar */
+    .navbar {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo img {
+      width: 100px;
+    }
+
+    .navbar-links li {
+      font-size: 16px;
+    }
+
+    /* Styles du footer */
+    .footer {
+      background-color: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      width: 40px;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+    }
+
+    /* Styles spécifiques pour la page d'offre */
+    .offer-details-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+      text-align: center;
+    }
+
+      .offer-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #27F4C3;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-bottom: 2px solid #27F4C3;
+        padding-bottom: 10px;
+      }
+
+    .offer-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .offer-price {
+      font-size: 18px;
+      color: green;
+      margin-bottom: 10px;
+    }
+
+    .offer-description {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .offer-style {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .booking-button {
+      display: inline-block;
+      background-color: #27F4C3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .booking-button:hover {
+      background-color: #e54043;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', alt: 'Your App Logo' %>
+      <% end %>
+    </div>
+    <ul class="navbar-links">
+      <%= link_to 'Sign out', class: 'btn-primary' %>
+      <%# TODO: LINK TO SIGNOUT HOME %>
+    </ul>
+  </header>
+
+  <div class="offer-details-container">
+    <h1 class="offer-title">Your DJ's <%="#{@offer.user.first_name} #{@offer.user.last_name} is available !"%></h1>
+    <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+    <p class="offer-price"><%= number_to_currency(@offer.pricing, unit: '€') %></p>
+    <p class="offer-description"><%= @offer.content %></p>
+    <p class="offer-style">Experience the amazing mix of <%= @offer.style %> music.</p>
+    <a href="#" class="booking-button">Book Now</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', alt: 'Dj Lock Logo' %>
+      <% end %>
+    </div>
+    <div class="contact-info">
+      <p>Contact us: <%= mail_to 'contact@djlock.com' %></p>
+    </div>
+    <p>&copy; <%= Time.now.year %> Dj Lock. All rights reserved.</p>
+  </footer>
+</body>
+</html>
