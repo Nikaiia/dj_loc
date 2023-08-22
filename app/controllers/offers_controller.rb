@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
-before_action :set_offer, only: [:show, :edit, :update, :create, :destroy]
+  before_action :set_offer, only: %i[show edit update create destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   def show
   end
@@ -13,7 +14,7 @@ before_action :set_offer, only: [:show, :edit, :update, :create, :destroy]
     @user = current_user
     @offer.user_id = @user
     if @offer.save
-      redirect_to @offer
+      redirect_to @offers_path, notice: "Offer was created successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,7 +43,7 @@ before_action :set_offer, only: [:show, :edit, :update, :create, :destroy]
   private
 
   def offer_params
-    params.require(:offer).permit(:availability, :pricing, :social_media, :style, :content)
+    params.require(:offer).permit(:availability, :pricing, :style, :content)
   end
 
   def set_offer
