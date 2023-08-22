@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :create, :destroy]
-  skip_before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def show
   end
