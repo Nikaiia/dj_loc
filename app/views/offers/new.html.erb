@@ -60,23 +60,18 @@
   </style>
 </head>
 <body>
-  <div class="form-container">
+  <div class="form-container p-3 mt-3">
     <h1 class="form-title">Create a New Offer</h1>
 
-    <%= form_with(model:@offer, url: offers_new_path)  do |f| %>
-      <div class="form-group">
+    <%= form_with(model:@offer, url: new_offer_path)  do |f| %>
+      <div class="form-group w-content-fit">
         <%= f.label :availability, class: "form-label" %>
-        <%= f.text_field :availability, class: "form-input" %>
+        <%= f.date_field :availability, class: "form-input" %>
       </div>
 
       <div class="form-group">
         <%= f.label :pricing, class: "form-label" %>
-        <%= f.text_field :pricing, class: "form-input" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :social_media, class: "form-label" %>
-        <%= f.text_field :social_media, class: "form-input" %>
+        <%= f.number_field :pricing, class: "form-input" %>
       </div>
 
       <div class="form-group">
