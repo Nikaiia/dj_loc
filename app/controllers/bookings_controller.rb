@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @offer = Offer.find(params[:offer_id]) # Définir la variable @offer ici
   end
 
   def create

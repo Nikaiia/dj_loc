@@ -112,7 +112,7 @@
   <header class="navbar">
     <div class="logo">
       <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'Your App Logo' %>
+        <%= image_tag 'logo.png', alt: 'dj loc Logo' %>
       <% end %>
     </div>
     <ul class="navbar-links">
@@ -122,24 +122,17 @@
   </header>
 
   <div class="offer-details-container">
-    <h1 class="offer-title">Your DJ's <%="#{@offer.user.first_name} #{@offer.user.last_name} is available !"%></h1>
-    <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
-    <p class="offer-price"><%= number_to_currency(@offer.pricing, unit: '€') %></p>
-    <p class="offer-description"><%= @offer.content %></p>
-    <p class="offer-style">Experience the amazing mix of <%= @offer.style %> music.</p>
-    <a href="#" class="booking-button">Book Now</a>
-  </div>
+<h1 class="offers-title">Your DJ's <%="#{@offer.user.first_name} #{@offer.user.last_name} is available !"%> </h1>
+<%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+<p class="offer-price"><%= number_to_currency(@offer.pricing, unit: '€') %></p>
+<p class="offer-description"><%= @offer.content %></p>
+<p class="offer-style">Experience the amazing mix of <%= @offer.style %> music.</p>
+<a href="<%= new_offer_booking_path(@offer) %>" class="booking-button">Book Now</a>
 
-  <footer class="footer">
-    <div class="footer-logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'Dj Lock Logo' %>
-      <% end %>
-    </div>
-    <div class="contact-info">
-      <p>Contact us: <%= mail_to 'contact@djlock.com' %></p>
-    </div>
-    <p>&copy; <%= Time.now.year %> Dj Lock. All rights reserved.</p>
-  </footer>
+  </div>
+  <div class="content">
+    <%= yield %>
+  </div>
+    <%= render partial: 'shared/footer' %>
 </body>
 </html>

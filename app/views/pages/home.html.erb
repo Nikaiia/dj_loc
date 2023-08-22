@@ -93,7 +93,6 @@
     <ul class="nav-links">
     <%= link_to 'Sign in', new_user_session_path, class: 'primary-red' %>
     <%# TODO: ADD link to sign in  %>
-
     </ul>
   </header>
 
@@ -107,17 +106,6 @@
   <div class="content">
     <%= yield %>
   </div>
-
-  <footer class="footer">
-    <div class="footer-logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'dj loc Logo' %>
-      <% end %>
-    </div>
-    <div class="contact-info">
-      <p>Contact us: <%= mail_to 'contact@djlock.com' %></p>
-    </div>
-    <p>&copy; <%= Time.now.year %> Dj Lock. All rights reserved.</p>
-  </footer>
+  <%= render partial: 'shared/footer' %>
 </body>
 </html>
