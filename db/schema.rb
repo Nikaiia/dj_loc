@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_145013) do
     t.integer "age"
     t.string "phone_number"
     t.string "role"
-    t.string 'username'
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
