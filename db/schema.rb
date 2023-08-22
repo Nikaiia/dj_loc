@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_21_101123) do
+
+ActiveRecord::Schema[7.0].define(version: 2023_08_21_145013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +22,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_101123) do
     t.text "comment"
     t.boolean "acceptation"
     t.bigint "user_id", null: false
+    t.bigint "offer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_bookings_on_offer_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -48,8 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_101123) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
     t.string "first_name"
     t.string "last_name"
     t.integer "age"
@@ -57,8 +58,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_101123) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "offers"
   add_foreign_key "bookings", "users"
   add_foreign_key "offers", "users"
   add_foreign_key "reviews", "users"
