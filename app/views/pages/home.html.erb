@@ -59,13 +59,13 @@
       margin-bottom: 40px;
     }
 
-    .btn-primary {
+    /* .primary-red {
       background-color: #ff5a5f;
       color: white;
       padding: 10px 20px;
       border-radius: 4px;
       text-decoration: none;
-    }
+    } */
 
     /* Footer styles */
     .footer {
@@ -91,15 +91,16 @@
       <% end %>
     </div>
     <ul class="nav-links">
-    <%= link_to 'Sign in', class: 'btn-primary' %>
+    <%= link_to 'Sign in', new_user_session_path, class: 'primary-red' %>
     <%# TODO: ADD link to sign in  %>
+
     </ul>
   </header>
 
   <div class="hero">
     <h1>Welcome to Dj Lock</h1>
     <p>Discover amazing offers and experiences.</p>
-    <%= link_to 'Browse Offers', offers_index_path, class: 'btn-primary' %>
+    <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
   </div>
 
   <div class="content">
