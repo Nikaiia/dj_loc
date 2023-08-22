@@ -137,7 +137,7 @@
           <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
           <div class="offer-details">
             <h2 class="offer-name"><%= offer.availability %></h2>
-            <p class="offer-price"><%= offer.pricing %></p>
+            <p class="offer-price"><%= "#{offer.pricing} €" %></p>
             <p class="offer-description"><%= offer.content %></p>
             <%= link_to "View Offer", offer_path(offer), class: "view-offer-button" %>
           </div>
