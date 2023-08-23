@@ -157,16 +157,9 @@
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="footer-logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'Dj Lock Logo' %>
-      <% end %>
-    </div>
-    <div class="contact-info">
-      <p>Contact us: <%= mail_to 'contact@djlock.com' %></p>
-    </div>
-    <p>&copy; <%= Time.now.year %> Dj Lock. All rights reserved.</p>
-  </footer>
+  <div class="content">
+    <%= yield %>
+  </div>
+ <%= render partial: 'shared/footer' %>
 </body>
 </html>
