@@ -107,6 +107,12 @@
     .booking-button:hover {
       background-color: #e54043;
     }
+
+    #offer-title {
+      text-align: center;
+      margin-top: 40px;
+    }
+
   </style>
 </head>
 <body>
@@ -122,25 +128,25 @@
     </ul>
   </header>
 
-  <div class="content">
-    <h1>My Offers</h1>
-    <% if @offers.present? %>
-      <div class="offer-list">
-        <% @offers.each do |offer| %>
-          <div class="offer-details-container">
-            <h2 class="offer-title"><%= offer.title %></h2>
-            <%= image_tag offer.image_url, class: "offer-image" %>
-            <p class="offer-price"><%= number_to_currency(offer.pricing, unit: '€') %></p>
-            <p class="offer-description"><%= offer.content %></p>
-            <p class="offer-style">Experience the amazing mix of <%= offer.style %> music.</p>
-            <a href="<%= new_offer_booking_path(offer) %>" class="booking-button">Book Now</a>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <p>You didn't post any offers yet.</p>
-    <% end %>
-  </div>
+    <h1 id="offer-title"><%="Hello #{@user.first_name} #{@user.last_name} find all your offers!"%> </h1>
+    <div class="content">
+      <% if @offers.present? %>
+        <div class="offer-list">
+          <% @offers.each do |offer| %>
+              <%# <%= image_tag offer.image_url, class: "offer-image" %>
+            <div class="offer-details-container">
+              <h2 class="offer-date"> <%= offer.availability%> </h2>
+              <p class="offer-price"><%= number_to_currency(offer.pricing, unit: '€') %></p>
+              <p class="offer-description"><%= offer.content %></p>
+              <p class="offer-style">Experience the amazing mix of <%= offer.style %> music.</p>
+              <a href="<%= new_offer_booking_path(offer) %>" class="booking-button">Book Now</a>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>You didn't post any offers yet.</p>
+      <% end %>
+    </div>
 
   <div class="footer">
     <div class="footer-logo">

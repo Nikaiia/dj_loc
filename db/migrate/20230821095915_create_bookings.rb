@@ -5,7 +5,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.date :hour
       t.integer :price
       t.text :comment
-      t.boolean :acceptation
+      t.boolean :acceptation, default: false
       t.references :user, null: false, foreign_key: true
       t.references :offer, null: false, foreign_key: true
 

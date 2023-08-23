@@ -2,12 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :offers do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :show]
   end
 
   resources :users, except: [:index] do
-    resources :bookings, only: [:index, :show, :destroy]
-    
+    resources :bookings, only: [:index, :destroy, :show]
   end
 
   resources :users, only: [] do
