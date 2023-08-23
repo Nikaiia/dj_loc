@@ -89,6 +89,11 @@
       <%= link_to root_path do %>
         <%= image_tag 'logo.png', alt: 'Dj lock Logo' %>
       <% end %>
+      <% if user_signed_in? %>
+        <%= link_to dashboard_user_path(current_user) do %>
+          <button class="primary-red">Dashboard</button>
+        <% end %>
+      <% end %>
     </div>
     <ul class="nav-links">
     <%= link_to 'Sign in', new_user_session_path, class: 'primary-red' %>
