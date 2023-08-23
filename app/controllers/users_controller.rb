@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   skip_before_action :authenticate_user!, only: %i[new create]
-  devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :role])
-
 
   def show
     @user = User.find(params[:id])
