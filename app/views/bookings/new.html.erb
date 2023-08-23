@@ -125,8 +125,8 @@
     </div>
     <ul class="nav-links">
       <%= link_to 'Home Page', root_path, class: 'primary-red' %>
-      <%= link_to 'Reservations', class: 'primary-red' %>
-      <%= link_to 'Sign out', class: 'primary-red' %>
+      <%= link_to 'Reservations', root_path, class: 'primary-red' %>
+      <%= link_to 'Log out', root_path, class: 'primary-red' %>
       <%# # TODO link to reservation and sign out %>
     </ul>
   </header>
@@ -135,16 +135,12 @@
     <h1>Make a Reservation</h1>
     <form class="booking-form" action="#" method="post">
       <div class="field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <label for="description">Describe your offer.</label>
+        <input type="text" required>
       </div>
       <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="field">
-        <label for="date">Date </label>
-        <input type="date" id="date" name="date" required>
+        <label for="price">What's the price you suggest?</label>
+        <input type="text" required>
       </div>
       <div class="actions">
         <button type="submit" class="booking-button">Book Now</button>
