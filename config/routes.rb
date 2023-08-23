@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:index] do
-  resources :bookings, only: [:index, :show, :destroy, :new, :create]
+  resources :bookings, only: [:index, :show, :destroy]
   end
+
+  resources :users, only: [] do
+    member do
+      get :dashboard, to: "pages#dashboard"
+    end
+  end
+
 end
