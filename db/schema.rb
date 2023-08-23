@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_145013) do
     t.date "hour"
     t.integer "price"
     t.text "comment"
-    t.boolean "acceptation", default: false
+    t.boolean "acceptation"
     t.bigint "user_id", null: false
     t.bigint "offer_id", null: false
     t.datetime "created_at", null: false

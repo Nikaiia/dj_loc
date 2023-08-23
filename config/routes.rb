@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :offers do
-    resources :bookings, only: [:new, :create, :shown, :index] do
-      get :booked
-    end
+    resources :bookings, only: [:new, :create, :show]
   end
 
   resources :users, except: [:index] do

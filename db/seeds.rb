@@ -18,7 +18,7 @@ puts 'Creating 50 fake users...'
     last_name:     Faker::Name.last_name,
     age:           rand(18..60),
     phone_number:  (Faker::PhoneNumber.phone_number).to_i,
-    role:          ["dj", "customer"].sample,
+    role:          ["DJ", "Customer"].sample,
     username:      Faker::Internet.username,
     email:         Faker::Internet.email,
     password:      "123456"
