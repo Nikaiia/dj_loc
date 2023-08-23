@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :create, :destroy]
+  before_action :set_booking, only: %i[show destroy booked]
   before_action :authenticate_user!
 
   def show
@@ -23,6 +23,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def index
+    @offer = Offer.find(params[:offer_id])
+    @bookings = @offer.bookings
+  end
+
+  def booked
+    @booking.acceptation = true
+  end
+
   def destroy
     @booking.destroy
     redirect_to bookings_path
@@ -31,7 +40,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:date, :hour, :price, :comment, :acceptation)
+    params.require(:booking).permit(:price, :comment, :acceptation, :date, :name, :email)
   end
 
   def set_booking
