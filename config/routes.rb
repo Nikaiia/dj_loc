@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:index] do
-  resources :bookings, only: [:index, :show, :destroy]
+    resources :bookings, only: [:index, :show, :destroy]
+    
   end
 
   resources :users, only: [] do

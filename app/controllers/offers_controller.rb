@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: %i[show edit update create destroy]
+  before_action :set_offer, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
 
   def show
@@ -12,9 +12,9 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(offer_params)
     @user = current_user
-    @offer.user_id = @user
+    @offer.user_id = @user.id
     if @offer.save
-      redirect_to @offers_path, notice: "Offer was created successfully."
+      redirect_to offers_path, notice: "Offer was created successfully."
     else
       render :new, status: :unprocessable_entity
     end
