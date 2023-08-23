@@ -123,18 +123,6 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'Your App Logo' %>
-      <% end %>
-    </div>
-    <ul class="navbar-links">
-      <%= link_to 'Log out', root_path, class: 'primary-red' %>
-      <%# TODO: LINK TO SIGNOUT HOME %>
-    </ul>
-  </header>
-
   <div class="offers-container">
     <h1 class="offers-title">Available Offers</h1>
 
@@ -156,10 +144,5 @@
       <% end %>
     </div>
   </div>
-
-  <div class="content">
-    <%= yield %>
-  </div>
-  <%= render partial: 'shared/footer' %>
 </body>
 </html>
