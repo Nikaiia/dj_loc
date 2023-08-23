@@ -61,6 +61,12 @@
       text-align: center;
     }
 
+    .center-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .offer-title {
       font-size: 24px;
       margin-bottom: 20px;
@@ -113,6 +119,28 @@
       margin-top: 40px;
     }
 
+
+    .offer-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    #create-button {
+      justify-content: center;
+      background-color: #27F4C3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      width: 300px;
+      margin: 40px;
+    }
+
   </style>
 </head>
 <body>
@@ -133,20 +161,29 @@
       <% if @offers.present? %>
         <div class="offer-list">
           <% @offers.each do |offer| %>
-              <%# <%= image_tag offer.image_url, class: "offer-image" %>
             <div class="offer-details-container">
               <h2 class="offer-date"> <%= offer.availability%> </h2>
+              <%# <%= image_tag offer.image_url, class: "offer-image" %>
               <p class="offer-price"><%= number_to_currency(offer.pricing, unit: '€') %></p>
               <p class="offer-description"><%= offer.content %></p>
               <p class="offer-style">Experience the amazing mix of <%= offer.style %> music.</p>
-              <a href="<%= new_offer_booking_path(offer) %>" class="booking-button">Book Now</a>
+                  <% if offer.bookings.where(acceptation: "false").present? %>
+                <p>You have <%= offer.bookings.where(acceptation: "false").count %> pending booking(s)</p>
+                <a href="<%= user_booking_path(offer) %>" class="booking-button">View bookings</a>
+              <% else %>
+                <p>You have no pending bookings</p>
+              <% end %>
+              <% end %>
             </div>
-          <% end %>
         </div>
       <% else %>
         <p>You didn't post any offers yet.</p>
       <% end %>
     </div>
+
+  <div class="center-container">
+    <%= link_to '+ Create Offer', new_offer_path, id: 'create-button' %>
+  </div>
 
   <div class="footer">
     <div class="footer-logo">
