@@ -111,7 +111,7 @@
 <body>
   <div class="offer-details-container">
 <h1 class="offers-title">Your DJ's <%="#{@offer.user.first_name} #{@offer.user.last_name} is available !"%> </h1>
-<%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%= cl_image_tag @offer.user.photo.key, height: 300, width: 400, crop: :fill %>
 <p class="offer-price"><%= number_to_currency(@offer.pricing, unit: '€') %></p>
 <p class="offer-description"><%= @offer.content %></p>
 <p class="offer-style">Experience the amazing mix of <%= @offer.style %> music.</p>
