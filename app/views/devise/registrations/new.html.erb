@@ -42,6 +42,13 @@
                 required: true,
                 input_html: { autocomplete: "new-password" }%>
     </div>
+    <div class="col-6 mb-3">
+        <%= f.input :photo,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "photo" }%>
+    </div>
+  </div>
 
   <div class="form-actions p-0">
     <%= f.button :submit, "Sign up", class: 'secondary-cyan'%>

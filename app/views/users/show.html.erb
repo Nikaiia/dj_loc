@@ -1,2 +1,11 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+
+<%= @user.id %>
+<%= @user.first_name %>
+<%= @user.last_name %>
+<%= @user.email %>
+<%= @user.role %>
+<%= @user.username %>
+<%=@user.photo.attached?%>
+<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
