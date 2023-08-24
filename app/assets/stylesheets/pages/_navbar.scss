@@ -1,0 +1,17 @@
+    /* Navbar styles */
+    .navbar {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo img {
+      width: 100px;
+    }
+
+    .navbar-links li {
+      font-size: 16px;
+    }

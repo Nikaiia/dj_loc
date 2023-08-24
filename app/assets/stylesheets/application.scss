@@ -11,6 +11,11 @@
 @import "components/index";
 @import "pages/index";
 
+// navbar and footer
+@import "pages/navbar";
+@import "pages/footer";
+
+
 .primary-red {
   background-color: #ff5a5f;
   color: white;
