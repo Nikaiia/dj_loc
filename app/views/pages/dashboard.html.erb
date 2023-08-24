@@ -126,9 +126,11 @@
               <p class="offer-price"><%= number_to_currency(offer.pricing, unit: '€') %></p>
               <p class="offer-description"><%= offer.content %></p>
               <p class="offer-style">Experience the amazing mix of <%= offer.style %> music.</p>
-              <% if offer.bookings.where(acceptation: "false").present? %>
-                <p>You have <%= offer.bookings.where(acceptation: "false").count %> pending booking(s)</p>
-                <a href="<%= user_booking_path(offer) %>" class="view-offer-button">View bookings</a>
+              <% if offer.bookings.where(acceptation: true).present?%>
+                <p><strong>You accepted a booking for this offer ! </strong></p>
+              <% elsif offer.bookings.where(acceptation: false).present? %>
+                <p>You have <%= offer.bookings.where(acceptation: false).count %> pending booking(s)</p>
+                <a href="<%= offer_bookings_path(offer) %>" class="view-offer-button">View bookings</a>
               <% else %>
                 <p>You have no pending bookings</p>
               <% end %>
