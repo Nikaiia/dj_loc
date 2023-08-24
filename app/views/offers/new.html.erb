@@ -97,23 +97,6 @@
   </style>
 </head>
 <body>
-    <header class="navbar">
-    <div class="logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'dj loc Logo' %>
-      <% end %>
-    </div>
-    <ul class="navbar-links">
-      <%= link_to 'Home Page', root_path, class: 'primary-red' %>
-      <% if user_signed_in? %>
-        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete}, class: 'primary-red' %>
-      <% else %>
-        <li><%= link_to 'Sign In', new_user_session_path, class: 'primary-red' %></li>
-        <% end %>
-    </ul>
-
-  </header>
-
   <div class="form-container p-3 mt-3">
     <h1 class="form-title">Create a New Offer</h1>
     <form>
@@ -143,9 +126,5 @@
     </form>
   </div>
   </div>
-  <div class="content">
-    <%= yield %>
-  </div>
-    <%= render partial: 'shared/footer' %>
 </body>
 </html>
