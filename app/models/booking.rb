@@ -3,6 +3,5 @@ class Booking < ApplicationRecord
   belongs_to :offer
 
   validates :date, presence: true
-  validates :hour, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
 end
