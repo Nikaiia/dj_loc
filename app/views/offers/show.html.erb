@@ -2,89 +2,16 @@
 <html>
 <head>
   <title>Dj Lock - Offer Details</title>
-  <style>
-    /* Réinitialiser certains styles par défaut */
-    body, h1, h2, h3, p {
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Styles globaux */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-    }
-
-    /* Styles de la navbar */
-  
-
-    /* Styles du footer */
-
-
-    /* Styles spécifiques pour la page d'offre */
-    .offer-details-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    .offer-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .offer-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .offer-price {
-      font-size: 18px;
-      color: green;
-      margin-bottom: 10px;
-    }
-
-    .offer-description {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .offer-style {
-      font-size: 16px;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .booking-button {
-      display: inline-block;
-      background-color: #27F4C3;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .booking-button:hover {
-      background-color: #e54043;
-    }
-  </style>
 </head>
 <body>
   <div class="offer-details-container">
 <h1 class="offers-title">Your DJ's <%="#{@offer.user.first_name} #{@offer.user.last_name} is available !"%> </h1>
-<%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%if @offer.user.photo.attached?%>
+<%= cl_image_tag @offer.user.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+
+<% end %>
+
 <p class="offer-price"><%= number_to_currency(@offer.pricing, unit: '€') %></p>
 <p class="offer-description"><%= @offer.content %></p>
 <p class="offer-style">Experience the amazing mix of <%= @offer.style %> music.</p>
