@@ -112,21 +112,6 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'dj loc Logo' %>
-      <% end %>
-    </div>
-    <ul class="navbar-links">
-      <% if user_signed_in? %>
-        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete}, class: 'primary-red' %>
-      <% else %>
-        <li><%= link_to 'Sign In', new_user_session_path, class: 'primary-red' %></li>
-<% end %>
-    </ul>
-  </header>
-
   <h1 class="offer-title"><%="Hello #{@user.first_name} #{@user.last_name} find all your offers!"%> </h1>
   <div class="offers-container">
     <div class="offer-list">
@@ -158,18 +143,6 @@
 
   <div class="center-container">
     <%= link_to '+ Create Offer', new_offer_path, id: 'create-button' %>
-  </div>
-
-  <div class="footer">
-    <div class="footer-logo">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'dj lock Logo' %>
-      <% end %>
-    </div>
-    <div class="contact-info">
-      <p>Contact us: <%= mail_to 'contact@djlock.com' %></p>
-    </div>
-    <p>&copy; <%= Time.now.year %> Dj Lock. All rights reserved.</p>
   </div>
 </body>
 </html>

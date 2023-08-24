@@ -57,18 +57,20 @@
       font-weight: bold;}
   </style>
 </head>
-<body>
-  <div class="banner">
-    <div class="dj">
-    <h1>Welcome to Dj Lock</h1>
-    <p>Discover amazing offers and experiences.</p>
+  <body>
+    <div class="banner">
+      <div class="dj">
+      <h1>Welcome to Dj Lock</h1>
+      <p>Discover amazing offers and experiences.</p>
+      </div>
+      <% if @user.nil? ||  @user.role == "Customer"   %>
+        <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
+      <% elsif @user.role == "DJ" %>
+        <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
+        <%= link_to 'Create Offer', new_offer_path, class: 'primary-red' %>
+        <% else %>
+        <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
+      <% end %>
     </div>
-    <% if @user.nil? ||  @user.role == "Customer"   %>
-      <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
-    <% else %>
-       <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
-      <%= link_to 'Create Offer', new_offer_path, class: 'primary-red' %>
-<% end %>
-  </div>
-</body>
+  </body>
 </html>

@@ -69,37 +69,38 @@
   </style>
 </head>
 <body>
-
-  </header>
-
-  <div class="form-container p-3 mt-3">
+<div class="form-container p-3 mt-3">
     <h1 class="form-title">Create a New Offer</h1>
-    <form>
-      <div class="form-group w-content-fit">
-        <label class="form-label">Availability</label>
-        <input type="date" class="form-input">
-      </div>
 
-      <div class="form-group">
-        <label class="form-label">Pricing</label>
-        <input type="number" class="form-input">
-      </div>
+    <%= simple_form_for(@offer, url: offers_path(@offer)) do |f| %>
+      <%= f.error_notification %>
 
-      <div class="form-group">
-        <label class="form-label">Style</label>
-        <input type="text" class="form-input">
-      </div>
+      <div class="form-inputs">
+        <div class="form-group">
+        <%= f.input :availability, required: true, input_html: { autocomplete: "availability" }, class: "form-input" %>
+          I want to have the availability dates after the current date
 
-      <div class="form-group">
-        <label class="form-label">Content</label>
-        <textarea class="form-input" rows="6"></textarea>
-      </div>
+        </div>
 
-      <div class="form-group">
-        <button class="form-button">Create Offer</button>
+        <div class="form-group">
+          <%= f.input :pricing, required: true, input_html: { autocomplete: "pricing" }, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.input :style, required: true, input_html: { autocomplete: "style" }, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.text_area :content, required: true, input_html: { autocomplete: "content" }, class: "form-input", rows: 6 %>
+        </div>
+
+        <div class="form-group">
+          <%= f.button :submit, "Create Offer", class: "form-button" %>
+        </div>
       </div>
-    </form>
+    <% end %>
   </div>
-  </div>
+</body>
+</html>
 </body>
 </html>

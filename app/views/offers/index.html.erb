@@ -103,7 +103,11 @@
       <% @offers.each do |offer| %>
         <div class="offer-card">
           <div class="offer-image-container">
+          <%if offer.user.photo.attached?%>
+            <%= cl_image_tag offer.user.photo.key, height: 300, width: 400, crop: :fill %>
+            <% else %>
             <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+          <% end %>
           </div>
           <div class="offer-details">
             <h2 class="offer-name"><%= offer.availability %></h2>
