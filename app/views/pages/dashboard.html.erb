@@ -3,13 +3,13 @@
 <head>
   <title>Dj Lock - Your Offers</title>
   <style>
-    /* Réinitialiser certains styles par défaut */
+    /* Reset some default styles */
     body, h1, h2, h3, p {
       margin: 0;
       padding: 0;
     }
 
-    /* Styles globaux */
+    /* Global styles */
     body {
       font-family: Arial, sans-serif;
       background-color: #f2f2f2;
@@ -33,92 +33,17 @@
       font-size: 16px;
     }
 
-    /* Styles du footer */
-    .footer {
-      background-color: #f5f5f5;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .footer-logo img {
-      width: 40px;
-    }
-
-    .contact-info {
-      margin-top: 10px;
-    }
-
-    /* Styles spécifiques pour la page d'offres */
-    .content {
-      flex: 1;
-      max-width: 800px;
+    /* Offers container styles */
+    .offers-container {
+      max-width: 1200px;
       margin: 0 auto;
       padding: 40px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-top: 40px;
+    }
+
+    .offer-title  {
       text-align: center;
+      margin: 40px;
     }
-
-    .center-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .offer-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .offer-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .offer-price {
-      font-size: 18px;
-      color: green;
-      margin-bottom: 10px;
-    }
-
-    .offer-description {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .offer-style {
-      font-size: 16px;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .booking-button {
-      display: inline-block;
-      background-color: #27F4C3;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .booking-button:hover {
-      background-color: #e54043;
-    }
-
-    #offer-title {
-      text-align: center;
-      margin-top: 40px;
-    }
-
 
     .offer-list {
       display: grid;
@@ -126,7 +51,64 @@
       gap: 20px;
     }
 
-    #create-button {
+    .offer-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .offer-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .offer-image {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
+
+    .offer-details {
+      margin-top: 20px;
+      flex: 1;
+    }
+
+    .offer-name {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .offer-price {
+      font-size: 16px;
+      color: green;
+      margin-bottom: 5px;
+    }
+
+    .offer-description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .offer-style {
+      font-size: 14px;
+      color: #333;
+    }
+
+
+    #create-button:hover {
+      background-color: #e54043;
+    }
+
+      #create-button {
       justify-content: center;
       background-color: #27F4C3;
       color: white;
@@ -141,6 +123,20 @@
       margin: 40px;
     }
 
+    /* Footer styles */
+    .footer {
+      background-color: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      width: 40px;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -151,35 +147,42 @@
       <% end %>
     </div>
     <ul class="navbar-links">
-      <%= link_to 'Sign out', class: 'btn-primary' %>
-      <%# TODO: LINK TO SIGNOUT HOME %>
+      <% if user_signed_in? %>
+        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete}, class: 'primary-red' %>
+      <% else %>
+        <li><%= link_to 'Sign In', new_user_session_path, class: 'primary-red' %></li>
+<% end %>
     </ul>
   </header>
 
-    <h1 id="offer-title"><%="Hello #{@user.first_name} #{@user.last_name} find all your offers!"%> </h1>
-    <div class="content">
+  <h1 class="offer-title"><%="Hello #{@user.first_name} #{@user.last_name} find all your offers!"%> </h1>
+  <div class="offers-container">
+    <div class="offer-list">
       <% if @offers.present? %>
-        <div class="offer-list">
-          <% @offers.each do |offer| %>
-            <div class="offer-details-container">
-              <h2 class="offer-date"> <%= offer.availability%> </h2>
-              <%# <%= image_tag offer.image_url, class: "offer-image" %>
+        <% @offers.each do |offer| %>
+          <div class="offer-card">
+            <div class="offer-image-container">
+              <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+            </div>
+            <div class="offer-details">
+              <h2 class="offer-name"><%= offer.availability %></h2>
               <p class="offer-price"><%= number_to_currency(offer.pricing, unit: '€') %></p>
               <p class="offer-description"><%= offer.content %></p>
               <p class="offer-style">Experience the amazing mix of <%= offer.style %> music.</p>
-                  <% if offer.bookings.where(acceptation: "false").present? %>
+              <% if offer.bookings.where(acceptation: "false").present? %>
                 <p>You have <%= offer.bookings.where(acceptation: "false").count %> pending booking(s)</p>
-                <a href="<%= user_booking_path(offer) %>" class="booking-button">View bookings</a>
+                <a href="<%= user_booking_path(offer) %>" class="view-offer-button">View bookings</a>
               <% else %>
                 <p>You have no pending bookings</p>
               <% end %>
-              <% end %>
             </div>
-        </div>
+          </div>
+        <% end %>
       <% else %>
         <p>You didn't post any offers yet.</p>
       <% end %>
     </div>
+  </div>
 
   <div class="center-container">
     <%= link_to '+ Create Offer', new_offer_path, id: 'create-button' %>
