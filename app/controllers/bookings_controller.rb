@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :create, :destroy]
+  before_action :set_booking, only: %i[show destroy]
   before_action :authenticate_user!
 
   def show
@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
     @offer = Offer.find(params[:offer_id])
     @booking.offer_id = @offer.id # récupérer sur la show de offer l'ID de l'offre
     if @booking.save
-      redirect_to @booking
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:date, :hour, :price, :comment, :acceptation)
+    params.require(:booking).permit(:date, :price, :comment, :acceptation)
   end
 
   def set_booking
