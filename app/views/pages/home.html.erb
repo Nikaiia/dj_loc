@@ -98,8 +98,12 @@
     <h1>Welcome to Dj Lock</h1>
     <p>Discover amazing offers and experiences.</p>
     </div>
-    <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
-    <%= link_to 'Create Offer', new_offer_path, class:'primary-red' %>
+    <% if @user.nil? ||  @user.role == "Customer"   %>
+      <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
+    <% else %>
+       <%= link_to 'Browse Offers', offers_path, class: 'primary-red' %>
+      <%= link_to 'Create Offer', new_offer_path, class: 'primary-red' %>
+<% end %>
   </div>
 </body>
 </html>
