@@ -10,6 +10,23 @@ class BookingsController < ApplicationController
     @offer = Offer.find(params[:offer_id])
   end
 
+  def index
+    @offer = Offer.find(params[:offer_id])
+    @bookings = @offer.bookings
+  end
+
+  def accept_booking
+    @booking = Booking.find(params[:id])
+    @booking.update(acceptation: true)
+    redirect_to dashboard_user_path(current_user)
+  end
+
+  def decline_booking
+    @booking = Booking.find(params[:id])
+    @booking.update(acceptation: false)
+    redirect_to dashboard_user_path(current_user)
+  end
+
   def create
     @booking = Booking.new(booking_params)
     @user = current_user
