@@ -144,7 +144,7 @@
       <% @bookings.each do |booking| %>
         <div class="offer-card">
           <div class="offer-image-container">
-            <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+            <%= image_tag asset_path('fatima_hajji.jpeg'), class: "offer-image" %>
           </div>
           <div class="offer-details">
             <h2 class="offer-name"><%= booking.date %></h2>
