@@ -150,6 +150,7 @@
             <h2 class="offer-name"><%= booking.date %></h2>
             <p class="offer-price"><%= booking.price %> €</p>
             <p class="offer-description"><%= booking.comment %></p>
+            <p class="offer-description">📞<strong><%= @offer.user.phone_number%></strong></p>
           </div>
           <div class="view-offer-button-container">
             <% if booking.acceptation == false %>

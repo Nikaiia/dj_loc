@@ -31,6 +31,10 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "role" }, class: 'col-12 mb-3'%>
+    <%= f.input :phone_number,
+                required: true,
+                autofocus: true,
+                input_tel: { autocomplete: "Phone number" }, class: 'col-12 mb-3'%>
     <div class="col-6 mb-3">
      <%= f.input :password,
                 required: true,
