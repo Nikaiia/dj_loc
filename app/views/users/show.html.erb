@@ -6,7 +6,11 @@
     <div class="profile-grid">
       <div>
         <div class="profile-image">
+        <% if @user.photo.attached?%>
           <%= cl_image_tag @user.photo.key, crop: :fill %>
+        <% else %>
+          <%= image_tag 'fatima_hajji.jpeg', class: "offer-image" %>
+        <% end %>
         </div>
         <%= link_to user_path(@user), class: "delete", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do %>
             <span><i class="fa-solid fa-trash"></i>Delete user</span>
@@ -17,7 +21,7 @@
         <div class="profile-card">
         <h5>ℹ️ Name</h5>
           <p><%= "#{@user.first_name} #{@user.last_name}"%></p>
-               <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
+              <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
           <i class="fa-solid fa-pen-to-square fa-xl"></i>
           <% end %>
         </div>
@@ -39,12 +43,19 @@
         </div>
 
         <div class="profile-card">
+          <h5>📞 Phone</h5>
+          <p><%= @user.phone_number %></p>
+          <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
+          <i class="fa-solid fa-pen-to-square fa-xl"></i>
+          <% end %>
+        </div>
+
+        <div class="profile-card">
           <h5> 🚀 Username</h5>
           <p><%= @user.username %></p>
           <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
           <i class="fa-solid fa-pen-to-square fa-xl"></i>
           <% end %>
-        </div>
       </div>
     </div>
   </div>
