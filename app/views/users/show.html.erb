@@ -1,11 +1,51 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="title-profile">
+    <h1>My Profile</h1>
+    </div>
 
-<%= @user.id %>
-<%= @user.first_name %>
-<%= @user.last_name %>
-<%= @user.email %>
-<%= @user.role %>
-<%= @user.username %>
-<%=@user.photo.attached?%>
-<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+    <div class="profile-grid">
+      <div>
+        <div class="profile-image">
+          <%= cl_image_tag @user.photo.key, crop: :fill %>
+        </div>
+        <%= link_to user_path(@user), class: "delete", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do %>
+            <span><i class="fa-solid fa-trash"></i>Delete user</span>
+          <% end %>
+      </div>
+
+      <div>
+        <div class="profile-card">
+        <h5>ℹ️ Name</h5>
+          <p><%= "#{@user.first_name} #{@user.last_name}"%></p>
+               <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
+          <i class="fa-solid fa-pen-to-square fa-xl"></i>
+          <% end %>
+        </div>
+
+        <address class="profile-card">
+          <h5>📧 Email</h5>
+          <p><%= @user.email %></p>
+          <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
+          <i class="fa-solid fa-pen-to-square fa-xl"></i>
+          <% end %>
+        </address>
+
+        <div class="profile-card">
+          <h5>🎧 Role</h5>
+          <p><%= @user.role %></p>
+          <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
+          <i class="fa-solid fa-pen-to-square fa-xl"></i>
+          <% end %>
+        </div>
+
+        <div class="profile-card">
+          <h5> 🚀 Username</h5>
+          <p><%= @user.username %></p>
+          <%= link_to edit_user_registration_path(@user), class: "edit", method: :get do %>
+          <i class="fa-solid fa-pen-to-square fa-xl"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
